@@ -1,0 +1,7 @@
+astvistor
+**/*.zip
+**/*.class
+**/.idea
+**/out
+**/*.iml
+

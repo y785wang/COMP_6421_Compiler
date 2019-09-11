@@ -1,0 +1,4 @@
+ERROR: invalid ";" at line 12
+       top stack: "classDeclRpt"
+       symbol   : ";"
+       action   : pop

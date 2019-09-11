@@ -1,0 +1,83 @@
+/*
+ * This test file focus on testing float.
+*/
+
+//--------------------------------------------------
+//
+// State flow: 0 -> [3+|5] -> 7 -> (8 <-> 9) -> 10
+//
+//--------------------------------------------------
+
+0.0 70.0 5.0       // single fraction (sf) + sp
+0.1 82.9 4.7       // single fraction (sf) + sp
+1.02003 0.40567    // sf + d+ + sp
+
+1.a                // state_7 + l
+1.0                // state_7 + 0
+1.1                // state_7 + nz
+1._                // state_7 + _
+1.@                // state_7 + unknown
+1.>                // state_7 + operator
+1.( 1..            // state_7 + punctuation
+
+1.0a               // state_8 + l
+1.00 1.000         // state_8 + 0+
+1.01               // state_8 + nz
+1.0_               // state_8 + _
+1.0`               // state_8 + unknown
+1.0<=              // state_8 + operator
+1.0)               // state_8 + punctuation
+
+1.2a 1.2e          // state_9 + l
+1.20               // state_9 + 0
+1.111              // state_9 + nz+
+1.1_               // state_9 + _
+1.1#               // state_9 + unknown
+1.1>=              // state_9 + operator
+1.1[               // state_9 + punctuation
+
+//--------------------------------------------------
+//
+// State flow: 9 -> 11 [ -> 12 ] -> 13+ -> 14
+//
+//--------------------------------------------------
+
+1.1e             // state_11 + sp
+1.1ea            // state_11 + l
+1.1e1            // state_11 + nz
+1.1e_            // state_11 + _
+1.1e^            // state_11 + unknown
+1.1e::           // state_11 + operator
+1.1e]            // state_11 + punctuation
+
+1.1e+    1.1e-   // state_12 + sp
+1.1e+a   1.1e-a  // state_12 + l
+1.1e+1   1.1e-1  // state_12 + nz
+1.1e+_   1.1e-_  // state_12 + _
+1.1e+^   1.1e-^  // state_12 + unknown
+1.1e+::  1.1e-+  // state_12 + operator
+1.1e+]   1.1e-{  // state_12 + punctuation
+
+1.1e1  1.1e+1    // state_13 + sp
+1.1e1a 1.1e+1a   // state_13 + l
+1.1e10 1.1e+10   // state_13 + 0
+1.1e11 1.1e+19   // state_13 + nz
+1.1e1@ 1.1e+1#   // state_13 + unknown
+1.1e1- 1.1e+1*   // state_13 + operator
+1.1e1} 1.1e+1}   // state_13 + punctuation
+
+//--------------------------------------------------
+//
+// State flow: 9 -> 11 [ -> 12 ] -> 15
+//
+//--------------------------------------------------
+
+1.1e0            // state_11 + 0
+1.1e+0 1.1e-0    // state_12 + 0
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+prog					-> classDeclRpt funcDefRpt 'main' funcBody ';'
+  classDeclRpt			-> classDecl classDeclRpt | EPSILON
+  funcDefRpt			-> funcDef funcDefRpt | EPSILON
+classDecl				-> 'class' 'id' parentDeclOpt '{' nextVFDecl '}' ';'
+  parentDeclOpt			-> ':' 'id' parentRpt | EPSILON
+    parentRpt			-> ',' 'id' parentRpt | EPSILON
+  nextVFDecl			-> type 'id' varOrFuncDecl | EPSILON
+  varOrFuncDecl			-> varDecl | funcDecl
+  varDecl				-> arraySizeRpt ';' nextVFDecl
+    arraySizeRpt		-> arraySize arraySizeRpt | EPSILON
+  funcDecl				-> '(' fParams ')' ';' funcDeclRpt
+  funcDeclRpt			-> type 'id' funcDecl | EPSILON 
+funcHead				-> type 'id' funcHeadND 
+  funcHeadND			-> 'sr' 'id' '(' fParams ')' | '(' fParams ')'
+funcDef					-> funcHead funcBody ';'
+funcBody				-> '{' nextVDS '}'  
+  nextVDS				-> 'id' varDeclOrAssignStat
+					 	| 'integer' 'id' arraySizeRpt ';' nextVDS
+					 	| 'float'   'id' arraySizeRpt ';' nextVDS
+					 	| statementND statementRpt
+					 	| EPSILON
+  varDeclOrAssignStat 	-> 'id' arraySizeRpt ';' nextVDS
+					 	| v1 assignOp expr ';' statementRpt
+statement				-> assignStat ';' | statementND
+  statementRpt			-> statement statementRpt | EPSILON
+  statementND			-> 'if'		'(' expr ')' 'then' statBlock 'else' statBlock ';'
+					 	| 'for' 	'(' type 'id' assignOp expr ';' arithExpr relOp arithExpr ';' assignStat ')' statBlock ';'
+					 	| 'read' 	'(' variable ')' ';'
+					 	| 'write' 	'(' expr ')' ';'
+					 	| 'return' '(' expr ')' ';'					 
+assignStat				-> variable assignOp expr
+statBlock				-> '{' statementRpt '}' | statement | EPSILON
+expr					-> arithExpr exprND
+  exprND				-> relOp arithExpr | EPSILON
+arithExpr				-> term arithExprLR
+  arithExprLR			-> addOp term arithExprLR | EPSILON
+sign					-> '+' | '-'
+term					-> factor termLR
+  termLR				-> multOp factor termLR | EPSILON
+factor					-> varOrFunc
+					 	| 'intNum' | 'floatNum'
+					 	| '(' arithExpr ')'
+					 	| 'not' factor
+					 	| sign factor
+  varOrFunc				-> 'id' varOrFuncND vF1
+    varOrFuncND			-> indiceRpt | '(' aParams ')'
+    indiceRpt			-> indice indiceRpt | EPSILON  
+    vF1					-> '.' 'id' varOrFuncND vF1
+					 	| EPSILON
+variable				-> 'id' v1
+  v1					-> indiceRpt v2
+  					 	| '(' aParams ')' '.' 'id' v1
+  v2					-> '.' 'id' v1 | EPSILON
+indice					-> '[' arithExpr ']'
+arraySize				-> '[' 'intNum' ']'
+type					-> 'integer' | 'float' | 'id'
+fParams					-> type 'id' arraySizeRpt fParamsTailRpt | EPSILON
+  fParamsTailRpt		-> fParamsTail fParamsTailRpt | EPSILON
+aParams					-> expr aParamsTailRpt | EPSILON
+  aParamsTailRpt		-> aParamsTail aParamsTailRpt | EPSILON
+fParamsTail				-> ',' type 'id' arraySizeRpt
+aParamsTail				-> ',' expr
+assignOp				-> '='
+relOp					-> 'eq' | 'neq' | 'lt' | 'gt' | 'leq' | 'geq'
+addOp					-> '+' | '-' | 'or'
+multOp					-> '*' | '/' | 'and'

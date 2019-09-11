@@ -1,0 +1,1 @@
+class A {	float   b;	integer f();};integer A::f() {	integer b;};integer f() {};main {	A a;	a = a;	a.b = 3.0;	a.f().b = 3;};

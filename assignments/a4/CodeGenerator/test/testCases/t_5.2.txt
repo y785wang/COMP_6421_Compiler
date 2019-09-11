@@ -1,0 +1,102 @@
+
+class A {
+    B b;
+    integer fa();
+};
+
+
+class B {
+    C c;
+};
+
+class C {
+    integer fc();
+};
+
+integer A::fa() {
+    return (11);
+};
+
+integer C::fc() {
+    return (4225);
+};
+
+integer f1() {
+    integer x;
+    x = f2();                                   // 5.2.2 branch back to a function that has been branched upon
+    return (x);
+};
+
+integer f2() {
+    A a;
+    return (a.fa());                            // 5.2.6 call to member function
+};
+
+integer f3(integer x, integer y) {
+    return (x + y);                             // 5.2.4 upon function resolution, pass the return value back to the calling function
+};
+
+integer f4(integer x) {
+    write(x);
+    if (0 == x) then {
+        return (0);
+    } else {
+        return (f4(x-1));
+    };
+};
+
+main {
+    integer x;
+    integer y[3][4];
+    integer z;
+    A a;
+
+    x = f1();                                   // 5.2.1 branch to a function's code block, execute the code block, branch back to the calling function upon return
+    write(x);
+
+    y[1][2] = 22;
+    z = f3(x, y[1][2]);                         // 5.2.3 pass parameters as local values to function's code block
+    write(z);
+
+    write(a.b.c.fc());                          // 5.2.7 call to deeply nested ember function
+
+    z = f4(3);                                  // 5.2.5 recursive function call - function call stack mechanism
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+integer s(integer x) {
+    return (x * x);
+};
+
+integer sDiff(integer x, integer y) {
+    return (s(x));
+};
+
+main {
+    integer x;
+    x = sDiff(5, 4);
+    write (x);
+};
+*/
+
+
+
+
+
+

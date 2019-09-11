@@ -1,0 +1,29 @@
+
+class A {
+    integer x;
+};
+
+class B : A {
+    float y;
+};
+
+class C {
+    integer z;
+    B b;
+};
+
+main {
+    integer x;                          // 5.1.1    allocate memory for basic types(integer, float)
+    float y;
+    integer z[3][4][2];                 // 5.1.2    allocate memory for arrays of basic types
+    A a;                                // 5.1.3    allocate memory for object
+    B b;                                // 5.1.4    allocate memory for object with inheritance
+    C c;                                // 5.1.5    allocate memory for object having object members
+    C cArray[2][3];                     // 5.1.6    allocate memory for arrays of objects
+
+    integer temp;
+    temp = 11 + 22 + 66;                // 5.1.7    allocate memory for temporary result
+    write(temp);
+};
+
+

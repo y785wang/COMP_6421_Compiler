@@ -1,0 +1,104 @@
+prog					-> classDeclRpt funcDefRpt main funcBody ;
+  classDeclRpt			-> classDecl classDeclRpt
+  classDeclRpt			-> EPSILON
+  funcDefRpt			-> funcDef funcDefRpt
+  funcDefRpt			-> EPSILON
+classDecl				-> class id parentDeclOpt { nextVFDecl } ;
+  parentDeclOpt			-> : id parentRpt
+  parentDeclOpt			-> EPSILON
+    parentRpt			-> , id parentRpt
+	parentRpt			-> EPSILON
+  nextVFDecl			-> type id varOrFuncDecl
+  nextVFDecl			-> EPSILON
+  varOrFuncDecl			-> varDecl
+  varOrFuncDecl			-> funcDecl
+  varDecl				-> arraySizeRpt ; nextVFDecl
+    arraySizeRpt		-> arraySize arraySizeRpt
+	arraySizeRpt		-> EPSILON
+  funcDecl				-> ( fParams ) ; funcDeclRpt
+  funcDeclRpt			-> type id funcDecl
+  funcDeclRpt			-> EPSILON 
+funcHead				-> type id funcHeadND 
+  funcHeadND			-> sr id ( fParams )
+  funcHeadND			-> ( fParams )
+funcDef					-> funcHead funcBody ;
+funcBody				-> { nextVDS }  
+  nextVDS				-> id varDeclOrAssignStat
+  nextVDS				-> integer id arraySizeRpt ; nextVDS
+  nextVDS				-> float   id arraySizeRpt ; nextVDS
+  nextVDS				-> statementND statementRpt
+  nextVDS				-> EPSILON
+  varDeclOrAssignStat 	-> id arraySizeRpt ; nextVDS
+  varDeclOrAssignStat 	-> v1 assignOp expr ; statementRpt
+statement				-> assignStat ;
+statement				-> statementND
+  statementRpt			-> statement statementRpt
+  statementRpt			-> EPSILON
+  statementND			-> if		( expr ) then statBlock else statBlock ;
+  statementND			-> for 	( type id assignOp expr ; arithExpr relOp arithExpr ; assignStat ) statBlock ;
+  statementND			-> read 	( variable ) ;
+  statementND			-> write 	( expr ) ;
+  statementND			-> return ( expr ) ;					 
+assignStat				-> variable assignOp expr
+statBlock				-> { statementRpt }
+statBlock				-> statement
+statBlock				-> EPSILON
+expr					-> arithExpr exprND
+  exprND				-> relOp arithExpr
+  exprND				-> EPSILON
+arithExpr				-> term arithExprLR
+  arithExprLR			-> addOp term arithExprLR
+  arithExprLR			-> EPSILON
+sign					-> +
+sign					-> -
+term					-> factor termLR
+  termLR				-> multOp factor termLR
+  termLR				-> EPSILON
+factor					-> varOrFunc
+factor					-> intNum
+factor					-> floatNum
+factor					-> ( arithExpr )
+factor					-> not factor
+factor					-> sign factor
+  varOrFunc				-> id varOrFuncND vF1
+    varOrFuncND			-> indiceRpt
+	varOrFuncND			-> ( aParams )
+	varOrFuncND			-> EPSILON
+    indiceRpt			-> indice indiceRpt
+	indiceRpt			-> EPSILON  
+    vF1					-> . id varOrFuncND vF1
+	vF1					-> EPSILON
+variable				-> id v1
+  v1					-> indiceRpt v2
+  v1					-> ( aParams ) . id v1
+  v1					-> EPSILON
+  v2					-> . id v1
+  v2					-> EPSILON
+indice					-> [ arithExpr ]
+arraySize				-> [ intNum ]
+type					-> integer
+type					-> float
+type					-> id
+fParams					-> type id arraySizeRpt fParamsTailRpt
+fParams					-> EPSILON
+  fParamsTailRpt		-> fParamsTail fParamsTailRpt
+  fParamsTailRpt		-> EPSILON
+aParams					-> expr aParamsTailRpt
+aParams					-> EPSILON
+  aParamsTailRpt		-> aParamsTail aParamsTailRpt
+  aParamsTailRpt		-> EPSILON
+fParamsTail				-> , type id arraySizeRpt
+aParamsTail				-> , expr
+assignOp				-> =
+relOp					-> eq
+relOp					-> neq
+relOp					-> lt
+relOp					-> gt
+relOp					-> leq
+relOp					-> geq
+addOp					-> +
+addOp					-> -
+addOp					-> or
+multOp					-> *
+multOp					-> /
+multOp					-> and

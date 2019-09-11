@@ -1,0 +1,92 @@
+Non-Terminal Symbol	First Set
+main	main
+;	;
+ε	ε
+class	class
+id	id
+{	{
+}	}
+:	:
+,	,
+(	(
+)	)
+sr	sr
+integer	integer
+float	float
+if	if
+then	then
+else	else
+for	for
+read	read
+write	write
+return	return
++	+
+-	-
+intNum	intNum
+floatNum	floatNum
+not	not
+.	.
+[	[
+]	]
+=	=
+eq	eq
+neq	neq
+lt	lt
+gt	gt
+leq	leq
+geq	geq
+or	or
+*	*
+/	/
+and	and
+prog	main, ε, class, integer, float, id
+classDeclRpt	ε, class
+funcDefRpt	ε, integer, float, id
+classDecl	class
+parentDeclOpt	:, ε
+parentRpt	,, ε
+nextVFDecl	ε, integer, float, id
+varDecl	;, ε, [
+arraySizeRpt	ε, [
+funcDecl	(
+funcDeclRpt	ε, integer, float, id
+funcHeadND	sr, (
+funcBody	{
+nextVDS	id, integer, float, ε, if, for, read, write, return
+varDeclOrAssignStat	id, (, ε, [, ., =
+statementRpt	ε, id, if, for, read, write, return
+statementND	if, for, read, write, return
+statBlock	{, ε, id, if, for, read, write, return
+exprND	ε, eq, neq, lt, gt, leq, geq
+arithExprLR	ε, +, -, or
+sign	+, -
+termLR	ε, *, /, and
+factor	intNum, floatNum, (, not, id, +, -
+varOrFunc	id
+varOrFuncND	(, ε, [
+indiceRpt	ε, [
+vF1	., ε
+variable	id
+v1	(, ε, [, .
+v2	., ε
+indice	[
+arraySize	[
+type	integer, float, id
+fParams	ε, integer, float, id
+fParamsTailRpt	ε, ,
+aParams	ε, intNum, floatNum, (, not, id, +, -
+aParamsTailRpt	ε, ,
+fParamsTail	,
+aParamsTail	,
+assignOp	=
+relOp	eq, neq, lt, gt, leq, geq
+addOp	+, -, or
+multOp	*, /, and
+funcHead	integer, float, id
+assignStat	id
+funcDef	integer, float, id
+statement	id, if, for, read, write, return
+varOrFuncDecl	;, ε, [, (
+term	intNum, floatNum, (, not, id, +, -
+arithExpr	intNum, floatNum, (, not, id, +, -
+expr	intNum, floatNum, (, not, id, +, -

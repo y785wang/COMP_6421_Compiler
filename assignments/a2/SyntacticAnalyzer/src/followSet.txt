@@ -1,0 +1,52 @@
+Non-Terminal Symbol	Follow Set
+prog	$
+classDeclRpt	main, integer, float, id
+funcDefRpt	main
+classDecl	class, main, integer, float, id
+parentDeclOpt	{
+parentRpt	{
+nextVFDecl	}
+varOrFuncDecl	}
+varDecl	}
+arraySizeRpt	,, ;, )
+funcDecl	}
+funcDeclRpt	}
+funcHead	{
+funcHeadND	{
+funcDef	integer, float, id, main
+funcBody	;
+nextVDS	}
+varDeclOrAssignStat	}
+statement	id, if, for, read, write, return, else, ;, }
+statementRpt	}
+statementND	id, if, for, read, write, return, else, ;, }
+assignStat	), ;
+statBlock	else, ;
+expr	,, ), ;
+exprND	,, ), ;
+arithExpr	], ), eq, neq, lt, gt, leq, geq, ;, ,
+arithExprLR	], ), eq, neq, lt, gt, leq, geq, ;, ,
+sign	intNum, floatNum, (, not, id, +, -
+term	+, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+termLR	+, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+factor	*, /, and, +, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+varOrFunc	*, /, and, +, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+varOrFuncND	., *, /, and, +, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+indiceRpt	., =, *, /, and, +, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+vF1	*, /, and, +, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+variable	=, )
+v1	=, )
+v2	=, )
+indice	[, ., =, *, /, and, +, -, or, ], ), eq, neq, lt, gt, leq, geq, ;, ,
+arraySize	[, ,, ;, )
+type	id
+fParams	)
+fParamsTailRpt	)
+aParams	)
+aParamsTailRpt	)
+fParamsTail	,, )
+aParamsTail	,, )
+assignOp	intNum, floatNum, (, not, id, +, -
+relOp	intNum, floatNum, (, not, id, +, -
+addOp	intNum, floatNum, (, not, id, +, -
+multOp	intNum, floatNum, (, not, id, +, -

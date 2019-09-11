@@ -1,0 +1,40 @@
+
+class A {};
+class B : A {};
+class C : A, B {};
+class D : A, B, C {
+	integer a;
+	float b[1][2][3];
+	integer f1();
+	float f2(integer a[1], float a[2][3]);
+};
+
+
+float   f2::D(integer a[1], float a[2][3]) {};
+integer f3() {
+	a[1][2].f(3).b = 4 || 5;
+	a[1/(2+3)] = 4 && 5;
+	a[!1][+1] = 1*2 < 3+4;
+	
+	if (1 == 2) then {
+		read(a[1].f(2).b);
+	} else {
+		write(1*2);
+	};
+	
+	return(3+4);
+};
+
+
+integer f() {
+	if (a[1][2].f1. > 2) then {
+		//maxValue = array[idx];
+	} else {
+		
+	};
+};
+
+main{
+	Utility utility;
+	Utility arrayUtility[2][3][6][7];
+};

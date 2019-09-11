@@ -1,0 +1,23 @@
+/*
+ * This test file focus on testing operator.
+*/
+
+                // operator + sp
+== <> < > <= >= // compare
+= ::            // assign, scope resolution op 
++ - * /         // simple math op
+&& ||           // and or
+!               // not
+
+<>= <====  &&&& // combined operator
+
+!a              // op + l
+<0              // op + 0
+*9              // p[ + nz
+(_              // op + _
+&&&             // op + unknown
++-              // op + op
+=;              // op + punctuation
+
+| |123          // special case
+& &abc          // special case

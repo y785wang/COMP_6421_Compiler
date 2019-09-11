@@ -1,0 +1,32 @@
+/*
+ * This test file focus on testing id, including reserved words.
+*/
+
+
+//--------------------------------------------------
+//
+// State flow: 0 -> 1+ -> 2
+//
+//--------------------------------------------------
+
+b f G Z       // l + sp
+ak MN uV Op   // l + l
+q0            // l + 0
+h1 l9 c4      // l + nonezero
+j_            // l + _
+Idk_56_S23___ // l + combined
+
+abc$          // id + unknown char
+abc;          // id + operator
+abc==         // id + punctuation
+
+Main fLOaT    // id looks like reserved word
+for return    // reserved word
+ifthen        // reserved word+reserved word
+handwrite     // id + reserved word
+classroom     // rw + id
+
+
+
+
+

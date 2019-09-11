@@ -1,0 +1,31 @@
+
+class A {
+	A       a_A;
+	float   v1_A;
+	integer f1_A(integer x);
+};
+
+class B : A {
+	integer v1_B;
+};
+
+integer A::f1_A(integer x) {
+	integer v1_f1_A;
+	return (1);
+};
+
+integer f1(integer x, float y) {
+	return (1);
+};
+
+main {
+	A a;
+    a.v1_A.umv_2 = 1;		// invalid .umv_2, v1_A is not a class type
+};
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+[ UNKNOWN  TYPE: $%^~, line #: 14 ] 
+[ INVALID FLOAT: 1._$@, line #: 18 ] 
+[ UNKNOWN  TYPE: $%, line #: 25 ] 
+[ UNKNOWN  TYPE: &@^, line #: 25 ] 
+[ UNCLOSED  CMT: /* 123
+abc, line #: 29 ] 

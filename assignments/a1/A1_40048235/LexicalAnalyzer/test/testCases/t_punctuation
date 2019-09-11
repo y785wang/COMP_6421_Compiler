@@ -1,0 +1,13 @@
+/*
+ * This test file focus on testing punctuation.
+*/
+
+; , . :  ( ) [ ] { } // punc + sp
+;a                   // punc + l
+,0                   // punc + 0
+.9                   // punc + nz
+:_                   // punc + _
+)#                   // punc + unknown
+}+                   // punc + operator
+{]                   // punc + punctuation
+

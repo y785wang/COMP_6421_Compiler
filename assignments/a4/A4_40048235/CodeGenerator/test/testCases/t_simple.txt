@@ -1,0 +1,60 @@
+
+class A {
+    integer a[1][2];
+    float   b[1];
+};
+
+
+integer ADD() {
+    return (10);
+};
+
+integer SUB() {
+    integer v;
+    v = 4225;
+    return (v);
+};
+
+
+main {
+    integer x;
+    integer y;
+    integer z;
+
+    read(x);
+    write(x);
+
+    //read(x);
+    //write(x);
+
+    x = 5;
+    y = ADD();
+    z = 12 == 4 + y * y / (x + 5) - 2;
+    write(z);
+
+    write(10);
+
+    write(SUB());
+};
+
+
+
+
+
+/*
+main {
+integer x;
+if(x < 1) then  if(x > 1) then x = 0; else x = 1;
+;
+else x = 1;
+;
+};
+
+main {
+integer x;
+for(integer i = 0; i<=100 ; i = 1)
+  for(integer j = 0; j>100 ; j = 1)
+    {x=1;};
+;
+};
+*/

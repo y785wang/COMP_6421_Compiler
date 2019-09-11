@@ -1,0 +1,11 @@
+prog classDeclRpt funcDefRpt classDecl parentDeclOpt
+parentRpt nextVFDecl varOrFuncDecl varDecl arraySizeRpt
+funcDecl funcDeclRpt funcHead funcHeadND funcDef
+funcBody nextVDS varDeclOrAssignStat statement statementRpt
+statementND	assignStat statBlock expr exprND
+arithExpr arithExprLR sign	term termLR
+factor varOrFunc varOrFuncND indiceRpt vF1
+variable v1	v2 indice arraySize
+type fParams fParamsTailRpt aParams	aParamsTailRpt
+fParamsTail aParamsTail assignOp relOp addOp
+multOp

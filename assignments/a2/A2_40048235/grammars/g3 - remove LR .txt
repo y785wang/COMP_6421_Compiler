@@ -1,0 +1,56 @@
+prog				-> classDeclRpt funcDefRpt 'main' funcBody ';'
+  classDeclRpt		-> classDecl classDeclRpt | EPSILON
+  funcDefRpt		-> funcDef funcDefRpt | EPSILON
+classDecl			-> 'class' 'id' parentDeclOpt '{' varDeclRpt funcDeclRpt '}' ';'
+  parentDeclOpt		-> ':' 'id' parentRpt | EPSILON
+    parentRpt		-> ',' 'id' parentRpt | EPSILON
+  varDeclRpt		-> varDecl varDeclRpt | EPSILON
+  funcDeclRpt		-> funcDecl funcDeclRpt | EPSILON
+funcDecl			-> type 'id' '(' fParams ')' ';'
+funcHead			-> type scopeOpt 'id' '(' fParams ')'
+  scopeOpt			-> 'id' 'sr' | EPSILON
+funcDef				-> funcHead funcBody ';'
+funcBody			-> '{' varDeclRpt statementRpt '}'
+  statementRpt		-> statement statementRpt | EPSILON
+varDecl				-> type 'id' arraySizeRpt ';'
+  arraySizeRpt		-> arraySize arraySizeRpt | EPSILON
+statement			-> assignStat ';' 
+					 | 'if'		'(' expr ')' 'then' statBlock 'else' statBlock ';'
+					 | 'for' 	'(' type 'id' assignOp expr ';' arithExpr relOp arithExpr ';' assignStat ')' statBlock ';'
+					 | 'read' 	'(' variable ')' ';'
+					 | 'write' 	'(' expr ')' ';'
+					 | 'return' '(' expr ')' ';'
+assignStat			-> variable assignOp expr
+statBlock			-> '{' statementRpt '}' | statement | EPSILON
+expr				-> arithExpr exprND
+exprND				-> relOp arithExpr | EPSILON
+arithExpr			-> term arithExprLR
+arithExprLR			-> addOp term arithExprLR | EPSILON
+sign				-> '+' | '-'
+term				-> factor termLR
+termLR				-> multOp factor termLR | EPSILON
+factor				-> idnestRpt 'id' factorND
+					 | 'intNum' | 'floatNum'
+					 | '(' arithExpr ')'
+					 | 'not' factor
+					 | sign factor
+factorND			-> indiceRpt | '(' aParams ')'
+variable			-> idnestRpt 'id' indiceRpt
+  idnestRpt			-> idnest idnestRpt | EPSILON
+  indiceRpt			-> indice indiceRpt | EPSILON
+functionCall		-> idnestRpt 'id' '(' aParams ')'
+idnest				-> 'id' idnestNonD
+idnestNonD			-> indiceRpt '.' | '(' aParams ')' '.'
+indice				-> '[' arithExpr ']'
+arraySize			-> '[' 'intNum' ']'
+type				-> 'integer' | 'float' | 'id'
+fParams				-> type 'id' arraySizeRpt fParamsTailRpt | EPSILON
+  fParamsTailRpt	-> fParamsTail fParamsTailRpt | EPSILON
+aParams				-> expr aParamsTailRpt | EPSILON
+  aParamsTailRpt	-> aParamsTail aParamsTailRpt | EPSILON
+fParamsTail			-> ',' type 'id' arraySizeRpt
+aParamsTail			-> ',' expr
+assignOp			-> '='
+relOp				-> 'eq' | 'neq' | 'lt' | 'gt' | 'leq' | 'geq'
+addOp				-> '+' | '-' | 'or'
+multOp				-> '*' | '/' | 'and'

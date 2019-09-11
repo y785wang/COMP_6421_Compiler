@@ -1,0 +1,15 @@
+/*
+ * This test file focus on testing pop case.
+*/
+
+//--------------------------------------------------
+//
+// no more input, pop
+//
+//--------------------------------------------------
+
+class A {
+	integer x;
+};
+
+main

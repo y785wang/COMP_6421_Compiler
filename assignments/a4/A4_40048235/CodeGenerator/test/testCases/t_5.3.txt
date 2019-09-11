@@ -1,0 +1,32 @@
+
+main {
+    integer x;
+    integer y;
+    integer z;
+
+    x = 3;
+    y = 5 + 1 == 2 * 3;
+    y = y + 5;
+
+    z = y * y / (x + 1) - 2;    // 5.3.1 assignment statement: assignment of the resulting value of an expression to a variable, independently of what is the complexity of the expression
+    write (z);                  // 5.3.4 input/output statements: read()/write()
+    read (z);
+
+    if (z == 97) then {         // 5.3.2 conditional statement: implementation of branching mechanism, including for imbricated conditional statements
+        read (z);
+        if (z == 97) then {
+            write (8);
+        } else {
+            write (9);
+        };
+    } else {
+        read (z);
+        if (z == 97) then {
+            write (10);
+        } else {
+            write (11);
+        };
+    };
+
+};
+

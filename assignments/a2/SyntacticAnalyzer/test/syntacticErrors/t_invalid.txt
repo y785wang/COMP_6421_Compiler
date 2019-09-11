@@ -1,0 +1,16 @@
+ERROR: missing ";" at line 6
+       top stack: ";"
+       symbol   : "class"
+       action   : scan
+ERROR: invalid "D" at line 8
+       top stack: "parentDeclOpt"
+       symbol   : "id"
+       action   : pop
+ERROR: missing ";" at line 11
+       top stack: ";"
+       symbol   : ","
+       action   : scan
+ERROR: reaching end of file at line 14
+       top stack: "nextVDS"
+       symbol   : "$"
+       action   : pop

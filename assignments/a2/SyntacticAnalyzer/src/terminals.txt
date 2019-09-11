@@ -1,0 +1,8 @@
+main ; class id {
+} : , ( )
+sr integer float if then
+else for read write return
++ - intNum floatNum not
+. [ ] = eq
+neq lt gt leq geq
+or * / and $

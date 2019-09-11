@@ -1,0 +1,30 @@
+// testing space, tab, newline 	
+ab
+ 1.23e0 
+	54	
+
+z == 0.0
+
+
+// testing two different backtrack
+1.000 1.000100
+
+
+// testing accumulative error starting from state 0
+$%^~
+
+
+// testing accumulative error at the middle
+1._$@
+
+
+// this is tricky, first two char "$%" is accumulated, but the third char
+// is '&' which could be part of the operator "&&", so at that time "$%"
+// is reported as error, then the coming is '*', which is not &, so at
+// that time, the char '&' is treated as alone, which is unknown type error
+$%&@^
+
+
+// unclosed comment
+/* 123
+abc
